@@ -1,25 +1,39 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ExternalLink, Github } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { ExternalLink, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Project {
-  id: string
-  title: string
-  description: string
-  longDescription: string
-  tech: string[]
-  demo: string
-  img: string
-  github: string
-  category: string
-  featured: boolean
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  tech: string[];
+  demo: string;
+  img: string;
+  github: string;
+  category: string;
+  featured: boolean;
 }
 
 const projects: Project[] = [
   {
     id: "1",
+    title: "Invoice Generator",
+    description:
+      "A modern invoice generator with real-time calculations, PDF export, and a clean, responsive UI.",
+    longDescription:
+      "Developed a fully responsive invoice generator using Next.js, allowing users to create, edit, and download professional invoices. Implemented dynamic form handling for line items, automatic tax and total calculations, and real-time preview updates. Integrated PDF generation for easy sharing and downloading. Focused on delivering an intuitive user experience with clean UI components and efficient state management.",
+    tech: ["Next.js", "React", "Tailwind CSS", "jsPDF"],
+    demo: "https://v0-invoice-generator-rouge-six.vercel.app/",
+    github: "",
+    img: "https://i.ibb.co/HLR7d3mw/Screenshot-11.png",
+    category: "Frontend",
+    featured: true,
+  },
+  {
+    id: "2",
     title: "Supply Connect",
     description:
       "A full-featured e-commerce platform with real-time inventory management and payment processing.",
@@ -35,7 +49,8 @@ const projects: Project[] = [
   {
     id: "2",
     title: "Biz-Niche",
-    description: "Platform for local vendors with AI integrated feature for category detection.",
+    description:
+      "Platform for local vendors with AI integrated feature for category detection.",
     longDescription:
       "Implemented RBAC for sellers and customers. Customer can also become a seller and set up their local business. Implemented AI feature of category detection while uploading images.",
     tech: ["React.js", "Node.js", "PostgresSQL", "Tensorflow.js"],
@@ -59,23 +74,27 @@ const projects: Project[] = [
     category: "Frontend",
     featured: false,
   },
-]
+];
 
 export function ProjectsSection() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const categories = Array.from(new Set(projects.map((p) => p.category)))
+  const categories = Array.from(new Set(projects.map((p) => p.category)));
   const filteredProjects = selectedCategory
     ? projects.filter((p) => p.category === selectedCategory)
-    : projects
+    : projects;
 
   return (
-    <section id="projects" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section
+      id="projects"
+      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+    >
       <div className="space-y-12">
         <div>
           <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
           <p className="text-lg text-muted-foreground">
-            A selection of projects I've built showcasing my skills in full-stack development
+            A selection of projects I've built showcasing my skills in
+            full-stack development
           </p>
         </div>
 
@@ -142,7 +161,9 @@ export function ProjectsSection() {
                       </span>
                     )}
                   </div>
-                  <p className="text-muted-foreground text-sm">{project.description}</p>
+                  <p className="text-muted-foreground text-sm">
+                    {project.description}
+                  </p>
                 </div>
 
                 {/* Tech Stack */}
@@ -160,7 +181,12 @@ export function ProjectsSection() {
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4">
                   {project.demo && (
-                    <Button asChild variant="default" size="sm" className="flex-1">
+                    <Button
+                      asChild
+                      variant="default"
+                      size="sm"
+                      className="flex-1"
+                    >
                       <a
                         href={project.demo}
                         className="flex items-center justify-center gap-2"
@@ -173,7 +199,12 @@ export function ProjectsSection() {
                     </Button>
                   )}
                   {project.github && (
-                    <Button asChild variant="outline" size="sm" className="flex-1 bg-transparent">
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 bg-transparent"
+                    >
                       <a
                         href={project.github}
                         className="flex items-center justify-center gap-2"
@@ -192,5 +223,5 @@ export function ProjectsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
